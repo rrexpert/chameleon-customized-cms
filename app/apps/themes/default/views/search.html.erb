@@ -1,0 +1,49 @@
+<div class="header-below g-mt-100">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <%= form_tag(cama_search_path, :method => "get", :class => "form-search form-horizontal search-form") do %>
+            <div class="form-group g-mb-20">
+              <div class="input-group u-shadow-v21 rounded g-mb-15">
+                <span class="screen-reader-text"><%= t("camaleon_cms.common.search") %>:</span>
+                <input type="search" title="Search:" name="q" value="<%= params[:q] if params[:q].present? %>" 
+                placeholder="<%= t("camaleon_cms.common.search") %> blog..." class="search-field form-control" />
+                <div class="input-group-addon d-flex align-items-center g-bg-white g-brd-white g-color-gray-light-v1 g-pa-2">
+                  <input type="submit" value="<%= t("camaleon_cms.common.search") %>" class="search-submit" />
+                </div>
+              </div>
+            </div>
+            <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <header class="page-header g-mt-40 g-mb-40">
+        <p class="page-title search-param-title">showing results for "<%= params[:q] %>"</p>
+      </header>
+    </div>
+  </div>
+</div>
+    
+<section class=" pb-120">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="row blog-masonary">
+          <% @posts.each_with_index do |post, index| %>
+              <%= raw "<div class='clearfix'></div>" if index%3 == 0 && index > 0 %>
+              <%= render partial: 'partials/post_list_item', locals: {post: post.decorate} %>
+          <% end %>
+        </div>
+        <%= content_tag("div", raw(ct('no_contents_found', default: 'No article found')), class: "alert alert-warning") if @posts.empty? %>
+        <%= raw cama_do_pagination(@posts) %>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+

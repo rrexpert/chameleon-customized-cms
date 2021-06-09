@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for :title %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+     <link rel="stylesheet" media="all" href="http://www.goshio.com/assets/application-b1a58960673eb3a1d229d81fe79be16fe91bd9690972a72ab7545dea8d443a2d.css" data-turbolinks-track="reload">
+     <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
+     <style type="text/css">
+       .image-404 {
+          width: 500px;
+        }
+
+        body {
+          font-family: 'Muli', sans-serif;
+        }
+        .not-found-content p {
+          color: #222;
+        }
+     </style>
+  </head>
+
+  <body>
+    <%= yield %>
+
+    <script src="http://goshio.com/assets/bootstrap.bundle.min-ebd0bcaaa263a5bb608879595e900b8a6284c6df0961fee7c47ce546448d3379.js"></script>
+    <script src="http://goshio.com/assets/jquery.menu.min-9c3cd54af78a2086ef9c4174a839888e733900d1fdf7cb2faeb2a3339750efa6.js"></script>
+    <script src="http://goshio.com/assets/main-81e5939fc85e6fb4c0382a6e9f20b8602bbc25efe72bb90cd4e730fb4c627f0f.js"></script>
+  </body>
+</html>

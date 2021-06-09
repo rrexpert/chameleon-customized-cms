@@ -1,0 +1,46 @@
+<div class="widget ">
+<div class="widget-title">
+  <h4>Categories</h4>
+</div>
+<ul>
+  <li class="cat-item cat-item-3"><a href="/category/19-business"><i class="fa fa-caret-right"></i> Business</a></li>
+  <li class="cat-item cat-item-3"><a href="/category/23-marketplace-guide"> <i class="fa fa-caret-right"></i> Marketplace Guide</a></li>
+  <li class="cat-item cat-item-3"><a href="/category/21-marketplace-model"><i class="fa fa-caret-right"></i> Marketplace Model</a></li>
+  <li class="cat-item cat-item-3"><a href="/category/20-marketplace-inspiration"><i class="fa fa-caret-right"></i> Inpirations</a></li>
+  <li class="cat-item cat-item-3"><a href="/category/22-market-analysis"><i class="fa fa-caret-right"></i> Market Analysis</a></li>
+  <li class="cat-item cat-item-3"><a href="/category/25-marketing-growth"><i class="fa fa-caret-right"></i> Marketing & Growth</a></li>
+</ul>
+</div>
+<div class="widget widget_media_image">
+  <a href="http://www.adwaretech.com/" target="_blank">
+    <%=image_tag "developers-ad.png", class: "advertising-image.png"%>
+  </a>
+</div>
+<div class="widget widget_related_post">
+  <div class="widget-title">
+    <h4>More Posts</h4>
+  </div>
+  <% current_site.the_contents(@post_type.slug).order(created_at: :desc).limit(7).decorate.each do |p| %>
+    <div class="single-post">
+      <div class="post-content">
+        <span class="posted-on"><%=@post.created_at.strftime("%d")%> <%=@post.created_at.strftime("%b")%>, <%=@post.created_at.strftime("%Y")%></span>
+        <h5><a href="<%= p.the_url %>" ><%= p.the_title %></a></a></h5>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<% tags = post.the_tags.decorate %>
+<% if tags.present? %>
+<div class="widget widget_tag_cloud">
+  <div class="widget-title">
+    <h4>Tags</h4>
+  </div>
+  <div class="tagcloud">
+    <% tags.each do |post_tag| %>
+      <a href="<%= post_tag.the_url %>" aria-label="Business (1 item)"><%= post_tag.the_title %></a>
+    <%end%>
+  </div>
+</div>
+<%end%>
+

@@ -1,0 +1,96 @@
+<div class="container">
+  <div class="blog-bg-overlay">
+    <div class="row">
+        <div class="col-12">
+          <div class="page-title text-center">
+            <h2>Welcome to Goshio Blog</h2>
+            <div class="hero-sub-heading">Your marketplace partner</div>
+            <%= form_tag(cama_search_path, :method => "get", :class => "form-search form-horizontal search-form") do %>
+            <div class="form-group g-mb-20">
+              <div class="input-group u-shadow-v21 rounded g-mb-15">
+                <span class="screen-reader-text"><%= t("camaleon_cms.common.search") %>:</span>
+                <input type="search" title="Search:" name="q" value="" placeholder="<%= t("camaleon_cms.common.search") %>..." class="search-field form-control" />
+                <div class="input-group-addon d-flex align-items-center g-bg-white g-brd-white g-color-gray-light-v1 g-pa-2">
+                  <input type="submit" value="<%= t("camaleon_cms.common.search") %>" class="search-submit" />
+                </div>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+<div class="container">
+  <div class="category-list">
+    <ul class="cate-list-head">
+      <li ><a href="/category/23-marketplace-guide"> <i class="fa fa-caret-right"></i> Marketplace Guide</a></li>
+      <li ><a href="/category/21-marketplace-model"><i class="fa fa-caret-right"></i> Marketplace Model</a></li>
+      <li ><a href="/category/20-marketplace-inspiration"><i class="fa fa-caret-right"></i> Inpirations</a></li>
+      <li ><a href="/category/22-market-analysis"><i class="fa fa-caret-right"></i> Market Analysis</a></li>
+      <li ><a href="/category/25-marketing-growth"><i class="fa fa-caret-right"></i> Marketing & Growth</a></li>
+    </ul>
+  </div>
+</div>
+<!-- Page Title End -->
+<section class="pb-120">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="row blog-masonary">
+          <% (current_site.the_post_type("post").the_posts.decorate rescue {}).each_with_index do |post, index| %>
+            <div class="col-md-6 grid-item">
+              <div id="post" class="single-blog-item position-relative post-86 post type-post status-publish format-standard has-post-thumbnail hentry category-business category-corporate tag-business tag-finance">
+                <!-- Blog Bg Shape -->
+                <div class="date-bg-shape position-absolute">
+                  <%=image_tag "date-shape.svg", class: "svg"%>
+                </div>
+                <!-- End Blog Bg Shape -->
+                <!-- Blog Content Begin -->
+                <div class="blog-content">
+                  <p class="posted-on"><%=post.created_at.strftime("%d")%> <%=post.created_at.strftime("%b")%> </p>
+                  <p class="category">Business</p>
+                  <a href="<%= post.the_url%>">
+                    <h3 class="blog-title"><%= post.the_title %></h3>
+                  </a>
+                  <%if post.has_thumb?%>
+                    <%= raw post.the_link_thumb()%>
+                  <%else%>
+                    <p class="blog-excerpt"> <%= truncate(post.the_content, length: 200, escape: false) %></p>
+                  <%end%>
+                </div>
+                <!-- Blog Button Begin -->
+                <div class="blog-button position-absolute w-100 d-flex align-items-center justify-content-center bg-img">
+                  <%=image_tag "bottom-shape.svg", class: "svg"%>
+                  <a href="<%= post.the_url%>" class="btn-inline btn-read">Read Blog</a>  
+                </div>
+                <!-- Blog Button End -->
+              </div>
+            </div>
+          <%end%>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<style type="text/css">
+  .blog-content img {
+    width: 100%;
+    max-width: 100%;
+    height: 160px;
+    object-fit: cover;
+  }
+
+  .blog-content .blog-excerpt {
+    height: 25px;
+  }
+</style>
+
+
+
+

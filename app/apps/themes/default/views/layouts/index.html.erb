@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- META SECTION -->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <!-- END META SECTION -->
+    <%#= javascript_include_tag theme_asset_path("js/main.js") %>
+    <%= favicon_link_tag 'favicon.ico' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel='stylesheet' id='goshio-fonts-css'  href='https://fonts.googleapis.com/css?family=Muli:400,400i,500,700%7CRubik:400,400i,500,700&subset=latin,latin-ext' type='text/css' media='all' />
+    <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+      .blog-content img {
+        width: 100%;
+        max-width: 100%;
+        height: 160px;
+        object-fit: cover;
+      }
+
+      .blog-content .blog-excerpt {
+        height: 25px;
+      }
+    </style>
+    <%#= stylesheet_link_tag theme_asset_path("css/main.css") %>
+    <%=stylesheet_link_tag "blog-styles"%>
+    <%= javascript_include_tag theme_asset_path("js/main.js") %>
+    <%= raw the_head %>
+</head>
+<body>
+    <div id="page" class="hfeed site">
+        <!-- header -->
+        <%= render "layouts/header" %>
+        <!-- ./header -->
+      <div id="main" class="site-main">
+        <div id="primary" class="content-area">
+          <div id="content" class="site-content" role="main">
+            <div class="container">
+              <div class="row">
+                <%= yield %>
+              </div><!-- #content -->
+            </div><!-- #primary -->
+          </div>
+        </div>
+      </div>
+
+        <%= render "layouts/footer" %>
+    </div>
+    <script src="http://goshio.com/assets/bootstrap.bundle.min-ebd0bcaaa263a5bb608879595e900b8a6284c6df0961fee7c47ce546448d3379.js"></script>
+    <script src="http://goshio.com/assets/jquery.menu.min-9c3cd54af78a2086ef9c4174a839888e733900d1fdf7cb2faeb2a3339750efa6.js"></script>
+    <script src="http://goshio.com/assets/main-81e5939fc85e6fb4c0382a6e9f20b8602bbc25efe72bb90cd4e730fb4c627f0f.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,98 @@
+<% (current_site.the_post_type("post").the_posts.decorate rescue {}).each_with_index do |post, index| %>
+    <article class="post-<%= index %> post type-post status-publish format-standard hentry category-sin-categoria" id="post-<%= index %>">
+        <header class="entry-header">
+            <div class="entry-thumbnail">
+                <%= raw post.the_link_thumb() if post.has_thumb?%>
+            </div>
+            <h1 class="entry-title">
+                <a rel="bookmark" href="<%= post.the_url %>"><%= post.the_title %></a>
+            </h1>
+            <div class="entry-meta">
+                <span class="date">
+                    <a rel="bookmark" title="Enlace permanente a <%= post.the_title %>" href="<%= post.the_url %>">
+                        <time datetime="" class="entry-date"><%= post.the_created_at %></time>
+                    </a>
+                </span>
+                <span class="categories-links">
+                    <%= raw get_taxonomy(post.the_categories.decorate, 'category tag') %>
+                </span>
+                <span class="tags-links">
+                    <%= raw get_taxonomy(post.the_tags.decorate, 'tag') %>
+                </span>
+            </div><!-- .entry-meta -->
+        </header><!-- .entry-header -->
+        <div class="entry-content">
+            <%= raw post.the_content %>
+        </div><!-- .entry-content -->
+        <% if post.the_comments.count > 0 %>
+            <footer class="entry-meta">
+                <div class="comments-link">
+                    <a href="<%= post.the_url %>">Ver los comentarios</a>
+                </div><!-- .comments-link -->
+            </footer><!-- .entry-meta -->
+        <% end %>
+    </article>
+<% end %>
+
+
+
+
+<article id="post" >
+    <header class="entry-header">
+        <% if @post.has_thumb? %>
+            <div class="entry-thumbnail">
+                <%= raw @post.the_thumb %>
+            </div>
+        <% end %>
+        <h1 class="entry-title"><%= @post.the_title %></h1>
+    </header><!-- .entry-header -->
+    <div class="entry-content">
+        <%= raw @post.the_content %>
+    </div><!-- .entry-content -->
+</article><!-- #post -->
+<%= render partial: 'partials/comments', locals: {post: @post} %>
+
+
+
+
+<header id="masthead" class="site-header" role="banner">
+            <a class="home-link" href="<%= current_site.the_url %>" title="<%= current_site.the_title %>" rel="home">
+                <h1 class="site-title"><%= image_tag "https://i.ibb.co/qxn35Yp/untitled-26.png", alt: "current_site.the_title" %></h1>
+                <h2 class="site-description"><%= current_site.the_content %></h2>
+            </a>
+
+            <div id="navbar" class="navbar">
+                <nav id="site-navigation" class="navigation main-navigation" role="navigation">
+                    <div class="menu-menu-1-container" style="float: left;">
+                        <%= raw get_nav_menu('main_menu', 'nav navbar-nav nav-menu') %>
+                    </div>
+
+                    <div style="">
+                        <%= render partial: 'partials/search_form' %>
+                        <ul class="nav navbar-nav nav-menu" style="float: right;">
+                            <% if signin?  %>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" href="#"><img src="<%= cama_current_user.decorate.the_avatar %>" style="max-width: 24px; border-radius: 50%" alt=""/> <%= cama_current_user.username %></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="<%= cama_admin_dashboard_path %>"><%= I18n.t('camaleon_cms.common.dashboard') %></a></li>
+                                        <li><a href="<%= cama_admin_profile_path %>"><%= I18n.t('camaleon_cms.common.profile') %></a></li>
+                                        <li><a href="<%= cama_admin_logout_path %>"><%= I18n.t('camaleon_cms.common.logout') %></a></li>
+                                    </ul>
+                                </li>
+                            <% else %>
+
+                                <li class="dropdown">
+                                    <a id="login-user" class="dropdown-toggle" href="#">Login / Register</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="<%= cama_admin_login_path %>"><%= I18n.t('camaleon_cms.common.login') %></a></li>
+                                        <li><a href="<%= cama_admin_register_path %>"><%= I18n.t('camaleon_cms.common.register') %></a></li>
+                                    </ul>
+                                </li>
+                            <% end %>
+                        </ul>
+                        <%= raw current_site.draw_languages("language list-inline pull-right", true) %>
+                    </div>
+
+                </nav><!-- #site-navigation -->
+            </div><!-- #navbar -->
+        </header><!-- #masthead -->

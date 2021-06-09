@@ -1,0 +1,67 @@
+<div class="col-md-12 row-fluid-full">
+  <div class="header-below">
+    <%= form_tag(cama_search_path, :method => "get", :class => "form-search form-horizontal search-form") do %>
+        <div class="form-group g-mb-20">
+          <div class="input-group u-shadow-v21 rounded g-mb-15">
+            <span class="screen-reader-text"><%= t("camaleon_cms.common.search") %>:</span>
+            <input type="search" title="Search:" name="q" value="" placeholder="<%= t("camaleon_cms.common.search") %>..." class="search-field form-control" />
+            <div class="input-group-addon d-flex align-items-center g-bg-white g-brd-white g-color-gray-light-v1 g-pa-2">
+              <input type="submit" value="<%= t("camaleon_cms.common.search") %>" class="search-submit" />
+            </div>
+          </div>
+        </div>
+        <% end %>
+  </div>
+</div>
+  <div class="col-lg-10 pt-50 mt-120 mx-auto">
+    <div class="blog-details">
+      <h2 class="g-mb-10"><%= @post.the_title %></h2>
+      <!-- <div class="blog-details-image"><img src="../../../../wp-content/uploads/2019/06/blog-7.png" alt="blog 7" /></div> -->
+      <div class="post-meta">
+        <ul class="list-inline">
+          <% categories = @post.the_categories.decorate %>
+          <li>Posted on 
+            <a class="date-color"><%=@post.created_at.strftime("%d")%> <%=@post.created_at.strftime("%b")%>, <%=@post.created_at.strftime("%Y")%></a> in
+            <% if categories.present? %>
+              <% categories.each do |cat| %> 
+                <a href="<%= cat.the_url %>"><%= cat.the_title %></a>
+              <%end%>
+            <%end%>
+          </li>
+          
+        </ul>
+      </div>
+      <div class="blog-details-content">
+        <%= raw @post.the_content%>
+      </div>
+      <div class="row align-items-center mb-30">
+        
+        <div class="col-md-6">
+          <div class="post-share mb-30">
+            <ul class="list-inline social_icon_list">
+              <li>Share on: </li>
+              <li><a href="https://www.facebook.com/sharer/sharer.php?u=<%= @post.the_url%>" target="_blank"><i class="fab ion-social-facebook"></i></a></li>
+              <li><a href="https://twitter.com/intent/tweet?text=<%= @post.the_url%>" target="_blank"><i class="fab ion-social-twitter"></i></a></li>
+              <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= @post.the_url%>" target="_blank"><i class="fab ion-social-linkedin"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="col-lg-4 pt-50 pb-80 mt-130 mob-mt-0">
+    
+    <aside class="sidebar mt-5 mt-lg-0">
+      <%#= render "partials/sidebar", post: @post %>
+    </aside>
+   
+  </div> -->
+<%#= render "partials/comments", post: @post %>
+<%#= render "partials/comments_list", comments: @comments %>
+
+<style type="text/css">
+  a.date-color {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+</style>
